@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Gestión de Usuarios y Grupos</h1>
+        <div class="page-content-text">
+            <p>Esta sección permite a los administradores gestionar los usuarios y grupos con acceso al sistema y a las tablas de Databricks Unity Catalog.</p>
+            <p>Puedes buscar usuarios/grupos existentes, ver sus permisos asociados, o añadir nuevos.</p>
+        </div>
+
+        <!-- Botón para añadir nuevo usuario/grupo -->
+        <div class="add-user-group-button-container">
+            <button type="button" class="add-user-group-button" (click)="addNewUserGroup()">
+                <i class="material-icons" style="vertical-align: middle; margin-right: 5px;">person_add</i> Añadir Nuevo Usuario/Grupo
+            </button>
+        </div>
+
+        <!-- Contenedor de filtros -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="filterUserGroupName" class="filter-label">Buscar por Nombre/Grupo</label>
+                <input type="text" id="filterUserGroupName" class="filter-input" placeholder="ej. Juan Pérez o grupo_analistas" [(ngModel)]="filterName">
+            </div>
+            <div class="filter-group">
+                <label for="filterUserGroupEmail" class="filter-label">Buscar por Email</label>
+                <input type="text" id="filterUserGroupEmail" class="filter-input" placeholder="ej. usuario@example.com" [(ngModel)]="filterEmail">
+            </div>
+        </div>
+
+        <!-- Tabla de usuarios y grupos -->
+        <div class="users-table-container">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>Nombre / Grupo</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="filteredUsersAndGroups.length > 0; else noEntities">
+                        <tr *ngFor="let entity of filteredUsersAndGroups">
+                            <td>{{ entity.name }}</td>
+                            <td>{{ entity.email }}</td>
+                            <td>{{ entity.type }}</td>
+                            <td>
+                                <button type="button" class="action-button-table view-permissions-button" (click)="viewPermissions(entity.id)">
+                                    Ver Permisos
+                                </button>
+                                <button type="button" class="action-button-table edit-button" (click)="editEntity(entity.id)">
+                                    Editar
+                                </button>
+                                <button type="button" class="action-button-table delete-button" (click)="deleteEntity(entity.id)">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #noEntities>
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--light-text-color); padding: 20px;">
+                                No se encontraron usuarios o grupos que coincidan con los filtros.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,179 @@
+<app-header></app-header>
+
+<main class="content-area">
+  <div class="form-card">
+    <form [formGroup]="permisoForm" (ngSubmit)="onSubmit()">
+      <!-- Campos generales de la solicitud -->
+      <div class="form-group">
+        <input
+          formControlName="requester_email"
+          type="email"
+          id="requester_email"
+          class="form-input"
+          placeholder=" "
+          required
+        />
+        <label for="requester_email" class="form-label">Email del Solicitante</label>
+      </div>
+
+      <div class="form-group">
+        <input
+          formControlName="requested_for_user_or_group"
+          type="text"
+          id="requested_for_user_or_group"
+          class="form-input"
+          placeholder=" "
+          required
+        />
+        <label for="requested_for_user_or_group" class="form-label">Usuario o Grupo al que Otorgar</label>
+      </div>
+
+      <div class="form-group">
+        <textarea
+          formControlName="justification"
+          id="justification_text"
+          class="form-textarea"
+          placeholder=" "
+          required
+        ></textarea>
+        <label for="justification_text" class="form-label">Justificación de la Solicitud</label>
+      </div>
+
+      <div class="form-group">
+        <input
+          formControlName="expiration_date"
+          type="date"
+          id="expiration_date"
+          class="form-input"
+          placeholder=" "
+        />
+        <label for="expiration_date" class="form-label">Fecha de Vencimiento (opcional)</label>
+      </div>
+
+      <hr style="margin: 30px 0; border: none; border-top: 1px dashed var(--border-color);" />
+
+      <!-- Sección para añadir tablas individualmente -->
+      <div class="table-add-section">
+        <h2>Añadir Tablas a la Solicitud</h2>
+
+        <div class="table-add-fields">
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="newCatalog"
+              name="newCatalog"
+              id="newCatalog"
+              placeholder=" "
+              class="form-input"
+              required
+            />
+            <label for="newCatalog" class="form-label">Catálogo</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="newSchema"
+              name="newSchema"
+              id="newSchema"
+              placeholder=" "
+              class="form-input"
+              required
+            />
+            <label for="newSchema" class="form-label">Esquema</label>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              [(ngModel)]="newTable"
+              name="newTable"
+              id="newTable"
+              placeholder=" "
+              class="form-input"
+              required
+            />
+            <label for="newTable" class="form-label">Tabla</label>
+          </div>
+          <div class="form-group">
+            <select
+              [(ngModel)]="newPermission"
+              name="newPermission"
+              id="newPermission"
+              class="form-select"
+              required
+            >
+              <option value="" disabled selected>Tipo de permiso</option>
+              <option value="SELECT">SELECT</option>
+              <option value="INSERT">INSERT</option>
+              <option value="UPDATE">UPDATE</option>
+              <option value="DELETE">DELETE</option>
+              <option value="ALL_PRIVILEGES">ALL PRIVILEGES</option>
+            </select>
+            <label for="newPermission" class="form-label">Tipo de Permiso</label>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="add-table-button"
+          (click)="addTable()"
+          [disabled]="
+            !newCatalog || !newSchema || !newTable || !newPermission
+          "
+        >
+          <i class="material-icons" style="vertical-align: middle; margin-right: 5px;">add</i>
+          Añadir Tabla
+        </button>
+      </div>
+
+      <!-- Tabla con las tablas añadidas -->
+      <div
+        class="added-tables-list-container"
+        *ngIf="tables.length > 0"
+      >
+        <h2>Tablas Añadidas</h2>
+        <table id="addedTablesList">
+          <thead>
+            <tr>
+              <th>Catálogo</th>
+              <th>Esquema</th>
+              <th>Tabla</th>
+              <th>Permiso</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of tables.controls; let i = index" [formGroupName]="i">
+              <td>{{ t.value.catalog }}</td>
+              <td>{{ t.value.schema }}</td>
+              <td>{{ t.value.table }}</td>
+              <td>{{ t.value.permission }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="remove-button"
+                  (click)="removeTable(i)"
+                  title="Eliminar tabla"
+                >
+                  <i class="material-icons">delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="submit-button-container">
+        <button
+          type="submit"
+          id="sendRequestButton"
+          class="submit-button"
+          [disabled]="permisoForm.invalid || tables.length === 0"
+        >
+          Enviar Solicitud
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<app-footer></app-footer>

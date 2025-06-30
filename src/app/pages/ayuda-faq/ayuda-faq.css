@@ -1,0 +1,250 @@
+
+/* Variables CSS para colores basados en un elegante tono rojo */
+:root {
+    --primary-color: #B22222; /* Firebrick - Un rojo profundo y elegante */
+    --primary-dark-color: #8B0000; /* Dark Red - Tono más oscuro para hover */
+    --accent-color: #FFD700; /* Gold - Un contraste cálido */
+    --text-color: #333;
+    --light-text-color: #555;
+    --background-color: #f0f2f5; /* Un gris claro para el fondo */
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --light-red-hover: #FCE7E7; /* Un rojo muy claro para hover de botones con borde */
+
+    /* Colores FAQ */
+    --faq-header-bg: #f9f9f9;
+    --faq-border-color: #e0e0e0;
+}
+
+/* Estilos globales y reseteos básicos */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Estilos de la barra de herramientas (Toolbar) */
+.app-toolbar {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.app-title-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.app-title-link:hover {
+    opacity: 0.8;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para los enlaces */
+}
+
+.toolbar-button:hover {
+    background-color: var(--primary-dark-color);
+}
+
+/* Área de contenido principal */
+.content-area {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Estilos de la tarjeta de la página */
+.page-card {
+    max-width: 900px; /* Ancho ajustado para FAQ */
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.page-content-text {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Estilos para la sección de FAQ */
+.faq-section {
+    margin-top: 20px;
+}
+.faq-item {
+    background-color: #fcfcfc;
+    border: 1px solid var(--faq-border-color);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden; /* Para contener la sombra y bordes */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--faq-header-bg);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--faq-border-color);
+    transition: background-color 0.2s ease;
+}
+.faq-question:hover {
+    background-color: #f0f0f0;
+}
+.faq-question .material-icons {
+    transition: transform 0.3s ease;
+}
+.faq-question.active .material-icons {
+    transform: rotate(180deg); /* Gira el icono cuando está activo */
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.faq-answer.active {
+    max-height: 200px; /* Suficiente para la respuesta, ajustar si es necesario */
+    padding: 15px 20px;
+}
+.faq-answer p {
+    margin: 0 0 10px 0;
+}
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Pie de página (Footer) */
+.app-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .app-toolbar {
+padding: 12px 16px;
+    }
+    .app-title-link {
+font-size: 1.2rem;
+    }
+    .toolbar-button {
+padding: 6px 12px;
+font-size: 0.9rem;
+    }
+    .page-card {
+margin: 20px auto;
+padding: 20px;
+    }
+    .page-title {
+font-size: 1.8rem;
+    }
+    .page-content-text {
+font-size: 1rem;
+    }
+    .faq-question {
+font-size: 1rem;
+padding: 12px 15px;
+    }
+    .faq-answer {
+font-size: 0.9rem;
+padding: 0 15px;
+    }
+    .faq-answer.active {
+padding: 12px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-toolbar {
+flex-direction: column;
+height: auto;
+padding-bottom: 10px;
+align-items: flex-start;
+    }
+    .app-title-link {
+margin-bottom: 10px;
+align-self: center;
+    }
+    .spacer {
+display: none;
+    }
+    .app-toolbar .nav-buttons {
+display: flex;
+flex-direction: column;
+width: 100%;
+align-items: center;
+    }
+    .toolbar-button {
+width: 90%;
+margin: 5px auto;
+    }
+    .page-card {
+margin: 15px auto;
+padding: 15px;
+    }
+    .page-title {
+font-size: 1.5rem;
+    }
+}

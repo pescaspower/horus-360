@@ -1,0 +1,323 @@
+/* Variables CSS para colores basados en un elegante tono rojo */
+:root {
+    --primary-color: #B22222; /* Firebrick - Un rojo profundo y elegante */
+    --primary-dark-color: #8B0000; /* Dark Red - Tono más oscuro para hover */
+    --accent-color: #FFD700; /* Gold - Un contraste cálido */
+    --text-color: #333;
+    --light-text-color: #555;
+    --background-color: #f0f2f5; /* Un gris claro para el fondo */
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --light-red-hover: #FCE7E7; /* Un rojo muy claro para hover de botones con borde */
+
+    /* Colores de input */
+    --input-border-color: #bdbdbd; /* Gris para bordes de input */
+    --input-focus-color: var(--primary-color); /* Color del borde al enfocar */
+    --input-label-color: #757575; /* Gris para las etiquetas */
+
+    /* Colores para tipos de acción (opcional, para visualización de logs) */
+    --action-request-submit: #2196f3; /* Azul para "Solicitud Enviada" */
+    --action-request-approve: #4caf50; /* Verde para "Solicitud Aprobada" */
+    --action-request-reject: #f44336; /* Rojo para "Solicitud Rechazada" */
+    --action-user-manage: #ff9800; /* Naranja para "Gestión de Usuario" */
+}
+
+/* Estilos globales y reseteos básicos */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Estilos de la barra de herramientas (Toolbar) */
+.app-toolbar {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.app-title-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.app-title-link:hover {
+    opacity: 0.8;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para los enlaces */
+}
+
+.toolbar-button:hover {
+    background-color: var(--primary-dark-color);
+}
+
+/* Área de contenido principal */
+.content-area {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Estilos de la tarjeta de la página */
+.page-card {
+    max-width: 1100px; /* Ancho ampliado para el log */
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.page-content-text {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Contenedor de filtros */
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: #fcfcfc;
+    justify-content: center;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.filter-input, .filter-select {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    background-color: var(--card-background);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.filter-input:focus, .filter-select:focus {
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 3px rgba(178, 34, 34, 0.2);
+}
+
+.filter-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--input-label-color);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.filter-select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23B22222%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27/%3e%3c/svg%3e');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 30px;
+}
+
+
+/* Estilos para la tabla de registro de auditoría */
+.audit-table-container {
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background-color: #fcfcfc;
+}
+
+.audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Ancho mínimo para que la tabla sea legible */
+}
+
+.audit-table thead {
+    background-color: #f5f5f5;
+}
+
+.audit-table th,
+.audit-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.audit-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--light-text-color);
+}
+
+.audit-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para los tipos de acción en la tabla (opcional) */
+.action-type-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+}
+.action-type-request-submit { background-color: var(--action-request-submit); }
+.action-type-request-approve { background-color: var(--action-request-approve); }
+.action-type-request-reject { background-color: var(--action-request-reject); }
+.action-type-user-manage { background-color: var(--action-user-manage); }
+
+
+/* Pie de página (Footer) */
+.app-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 1024px) {
+    .page-card {
+max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-toolbar {
+padding: 12px 16px;
+    }
+    .app-title-link {
+font-size: 1.2rem;
+    }
+    .toolbar-button {
+padding: 6px 12px;
+font-size: 0.9rem;
+    }
+    .page-card {
+margin: 20px auto;
+padding: 20px;
+    }
+    .page-title {
+font-size: 1.8rem;
+    }
+    .page-content-text {
+font-size: 1rem;
+    }
+    .filters-container {
+flex-direction: column;
+    }
+    .filter-group {
+min-width: 100%;
+    }
+    .audit-table th,
+    .audit-table td {
+padding: 8px 10px;
+font-size: 0.8rem;
+    }
+    .action-type-badge {
+font-size: 0.65rem;
+padding: 3px 6px;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-toolbar {
+flex-direction: column;
+height: auto;
+padding-bottom: 10px;
+align-items: flex-start;
+    }
+    .app-title-link {
+margin-bottom: 10px;
+align-self: center;
+    }
+    .spacer {
+display: none;
+    }
+    .app-toolbar .nav-buttons {
+display: flex;
+flex-direction: column;
+width: 100%;
+align-items: center;
+    }
+    .toolbar-button {
+width: 90%;
+margin: 5px auto;
+    }
+    .page-card {
+margin: 15px auto;
+padding: 15px;
+    }
+    .page-title {
+font-size: 1.5rem;
+    }
+    .audit-table {
+min-width: 500px; /* Ancho mínimo para móviles */
+    }
+}

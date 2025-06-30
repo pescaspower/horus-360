@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Ayuda y Preguntas Frecuentes (FAQ)</h1>
+        <div class="page-content-text">
+            <p>Encuentra respuestas a las preguntas más comunes sobre el uso del Gestor de Permisos de Databricks Unity Catalog.</p>
+            <p>Si no encuentras lo que buscas, no dudes en contactar al equipo de soporte.</p>
+        </div>
+
+        <div class="faq-section">
+            <div *ngFor="let item of faqItems" class="faq-item">
+                <div class="faq-question" (click)="toggle(item)" [class.active]="item.active">
+                    <span>{{ item.question }}</span>
+                    <i class="material-icons" [style.transform]="item.active ? 'rotate(180deg)' : 'rotate(0deg)'">expand_more</i>
+                </div>
+                <div class="faq-answer" [class.active]="item.active">
+                    <ng-container *ngIf="item.isList; else textAnswer">
+                        <ul>
+                            <li *ngFor="let li of item.answerList" [innerHTML]="li"></li>
+                        </ul>
+                    </ng-container>
+                    <ng-template #textAnswer>
+                        <p *ngFor="let paragraph of item.answerParagraphs">{{ paragraph }}</p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

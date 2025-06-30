@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+ <main class="content-area">
+ <div class="home-card">
+ <h1 class="welcome-title">
+ ¡Bienvenido al Gestor de Permisos de Databricks Unity Catalog!
+ </h1>
+ <!-- Contenedor para el SVG directo -->
+ <div class="big-data-svg-container">
+ <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" class="big-data-svg-graphic">
+ <!-- Nodos de datos (círculos) -->
+ <circle cx="100" cy="100" r="25" fill="#FFFFFF"/>
+ <circle cx="300" cy="80" r="22" fill="#FFFFFF"/>
+ <circle cx="500" cy="120" r="28" fill="#FFFFFF"/>
+ <circle cx="200" cy="200" r="24" fill="#FFFFFF"/>
+ <circle cx="40" cy="190" r="21" fill="#FFFFFF"/>
+ <circle cx="600" cy="70" r="20" fill="#FFFFFF"/>
+ <circle cx="70" cy="60" r="18" fill="#FFFFFF"/>
+
+ <!-- Conexiones entre nodos (líneas) -->
+ <polyline points="100,100 200,200 500,120 600,70" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.6"/>
+ <line x1="100" y1="100" x2="40" y2="190" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+ <line x1="300" y1="80" y2="120" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+ <line x1="70" y1="60" x2="100" y2="100" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+
+ <!-- Texto "DATA & INSIGHTS" -->
+ <text x="350" y="250" font-family="Arial" font-size="50" fill="#FFFFFF" text-anchor="middle">DATA &amp; INSIGHTS</text>
+ </svg>
+ </div>
+
+ <div class="description-text">
+ <p>Esta plataforma ha sido diseñada para simplificar y centralizar la administración de permisos
+ sobre las tablas dentro de tu catálogo de Databricks Unity Catalog. Olvídate de los procesos manuales
+ y las solicitudes dispersas; aquí podrás gestionar tus accesos de forma eficiente y segura.</p>
+
+ <p>Nuestro objetivo es proporcionar una interfaz intuitiva y potente que facilite tanto a los
+ solicitantes como a los administradores la gestión de los privilegios sobre tus datos críticos.</p>
+
+ <h3 class="services-title">Nuestros Servicios Principales:</h3>
+ <ul class="services-list">
+ <li class="services-list-item">
+ <i class="material-icons">lock_open</i>
+ <div class="service-item-content">
+ <div class="service-item-title">Solicitar Permisos sobre Tablas</div>
+ <div class="service-item-description">Envía fácilmente tus solicitudes de acceso (SELECT, INSERT, UPDATE, DELETE, ALL PRIVILEGES) para las tablas que necesitas en Unity Catalog.</div>
+ </div>
+ </li>
+ <li class="services-list-item">
+ <i class="material-icons">search</i>
+ <div class="service-item-content">
+ <div class="service-item-title">Consultar mis Peticiones</div>
+ <div class="service-item-description">Mantente al tanto del estado de tus solicitudes. Visualiza si están pendientes, aprobadas o rechazadas en cualquier momento.</div>
+ </div>
+ </li>
+ <li class="services-list-item">
+ <i class="material-icons">how_to_reg</i>
+ <div class="service-item-content">
+ <div class="service-item-title">Aprobar Peticiones (para Administradores)</div>
+ <div class="service-item-description">Si eres administrador, revisa, aprueba o deniega las peticiones de permisos de forma centralizada, aplicando los cambios directamente en Databricks Unity Catalog.</div>
+ </div>
+ </li>
+ </ul>
+
+ <div class="action-buttons">
+ <a routerLink="/solicitar-permiso" class="action-button primary-button">
+ Comenzar Solicitud
+ </a>
+ <a routerLink="/mis-peticiones" class="action-button stroked-button">
+ Ver Mis Peticiones
+ </a>
+ </div>
+ </div>
+ </div>
+ </main>
+
+<app-footer></app-footer>

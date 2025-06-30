@@ -1,0 +1,91 @@
+<app-header></app-header>
+
+<main class="content-area" *ngIf="requestData; else loading">
+    <div class="page-card">
+        <h1 class="page-title">Detalle de Petición <span>#{{ requestData.id }}</span></h1>
+        <div class="page-content-text">
+            <p>Aquí puedes revisar todos los detalles de la solicitud de permiso seleccionada y añadir comentarios.</p>
+        </div>
+
+        <div class="detail-section">
+            <!-- Información General de la Petición -->
+            <div class="detail-item">
+                <span class="detail-label">Estado de la Petición:</span>
+                <span class="detail-value status-badge" [ngClass]="'status-' + requestData.status.toLowerCase()">{{ requestData.status }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">ID de Petición:</span>
+                <span class="detail-value">{{ requestData.id }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email del Solicitante:</span>
+                <span class="detail-value">{{ requestData.requesterEmail }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Usuario/Grupo al que Otorgar:</span>
+                <span class="detail-value">{{ requestData.targetUserOrGroup }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Fecha de Solicitud:</span>
+                <span class="detail-value">{{ requestData.requestDate }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Fecha de Vencimiento:</span>
+                <span class="detail-value">{{ requestData.expirationDate || 'No aplica' }}</span>
+            </div>
+
+            <!-- Justificación de la Solicitud -->
+            <div class="detail-item" style="grid-column: 1 / -1;">
+                <span class="detail-label">Justificación de la Solicitud:</span>
+                <span class="detail-value">{{ requestData.justification }}</span>
+            </div>
+
+            <!-- Tablas Solicitadas -->
+            <div class="requested-tables-section">
+                <h3>Tablas Solicitadas</h3>
+                <ul class="table-list">
+                    <ng-container *ngIf="requestData.tables.length > 0; else noTables">
+                        <li *ngFor="let table of requestData.tables">
+                            <span class="table-name">{{ table.catalog }}.{{ table.schema }}.{{ table.table }}</span> (<span class="permission-type">{{ table.permission }}</span>)
+                        </li>
+                    </ng-container>
+                    <ng-template #noTables>
+                        <li>No hay tablas especificadas.</li>
+                    </ng-template>
+                </ul>
+            </div>
+
+            <!-- Log de Aprobación/Rechazo y Comentarios -->
+            <div class="approval-log-section">
+                <h3>Registro de Aprobación/Rechazo y Comentarios</h3>
+                <ul class="log-entries">
+                    <ng-container *ngIf="requestData.approvalLog.length > 0; else noLogs">
+                        <li *ngFor="let log of requestData.approvalLog" class="log-entry" [ngClass]="log.type.toLowerCase().replace(' ', '-')">
+                            <strong>{{ log.type }}</strong> por {{ log.user }}: {{ log.comment }}
+                            <span class="log-date">{{ log.date }}</span>
+                        </li>
+                    </ng-container>
+                    <ng-template #noLogs>
+                        <li class="log-entry">No hay eventos registrados aún.</li>
+                    </ng-template>
+                </ul>
+
+                <div class="add-comment-section">
+                    <h4>Añadir Nuevo Comentario</h4>
+                    <textarea class="comment-textarea" placeholder="Escribe tu comentario aquí..." [(ngModel)]="newCommentText"></textarea>
+                    <div class="comment-button-container">
+                        <button type="button" class="add-comment-button" (click)="addComment()" [disabled]="!newCommentText.trim()">
+                            Añadir Comentario
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<ng-template #loading>
+    <p style="text-align: center; font-size: 1.2rem; margin-top: 50px;">Cargando detalles de la petición...</p>
+</ng-template>
+
+<app-footer></app-footer>

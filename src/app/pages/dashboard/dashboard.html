@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Panel de Control General</h1>
+        <div class="page-content-text">
+            <p>Bienvenido al panel de control. Aquí encontrarás un resumen ejecutivo del estado de las peticiones de permisos en tu plataforma Databricks.</p>
+            <p>Mantente al tanto de las métricas clave y las tendencias de uso.</p>
+        </div>
+
+        <!-- Sección de Métricas Clave -->
+        <div class="metrics-grid">
+            <div *ngFor="let metric of metrics" [ngClass]="getMetricClass(metric)">
+                <i [ngClass]="getMetricIconClass(metric)">{{ metric.icon }}</i>
+                <div class="metric-value">{{ metric.value }}</div>
+                <div class="metric-label">{{ metric.label }}</div>
+            </div>
+        </div>
+
+        <!-- Sección de Estadísticas Adicionales -->
+        <div class="stats-section">
+            <div class="stats-card">
+                <h3>Tablas más Solicitadas</h3>
+                <ul class="stats-list">
+                    <li *ngFor="let table of topTables" class="stats-list-item">
+                        <span class="item-name">{{ table.name }}</span>
+                        <span class="item-value">{{ table.value }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="stats-card">
+                <h3>Usuarios con más Peticiones</h3>
+                <ul class="stats-list">
+                    <li *ngFor="let user of topUsers" class="stats-list-item">
+                        <span class="item-name">{{ user.name }}</span>
+                        <span class="item-value">{{ user.value }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

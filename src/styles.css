@@ -1,0 +1,26 @@
+/* Variables CSS para colores basados en un elegante tono rojo */
+    :root {
+        --primary-color: #B22222; /* Firebrick - Un rojo profundo y elegante */
+        --primary-dark-color: #8B0000; /* Dark Red - Tono más oscuro para hover */
+        --accent-color: #FFD700; /* Gold - Un contraste cálido */
+        --text-color: #333;
+        --light-text-color: #555;
+        --background-color: #f0f2f5; /* Un gris claro para el fondo */
+        --card-background: #ffffff;
+        --border-color: #e0e0e0;
+        --light-red-hover: #FCE7E7; /* Un rojo muy claro para hover de botones con borde */
+    }
+
+    /* Estilos globales y reseteos básicos */
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: var(--background-color);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        color: var(--text-color);
+    }
+/* You can add global styles to this file, and also import other style files */

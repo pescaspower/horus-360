@@ -1,0 +1,80 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Mis Peticiones de Permiso</h1>
+        <div class="page-content-text">
+            <p>Aquí podrás ver el estado de todas las peticiones de permisos que has realizado.</p>
+            <p>Utiliza los filtros para encontrar rápidamente la información que necesitas.</p>
+        </div>
+
+        <!-- Contenedor de filtros -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="filterRequesterEmail" class="filter-label">Email Solicitante</label>
+                <input type="text" id="filterRequesterEmail" class="filter-input" placeholder="ej. usuario@example.com" [(ngModel)]="filterRequesterEmail">
+            </div>
+            <div class="filter-group">
+                <label for="filterTableName" class="filter-label">Buscar por Tabla</label>
+                <input type="text" id="filterTableName" class="filter-input" placeholder="ej. mi_tabla_datos" [(ngModel)]="filterTableName">
+            </div>
+            <div class="filter-group">
+                <label for="filterStatus" class="filter-label">Filtrar por Estado</label>
+                <select id="filterStatus" class="filter-select" [(ngModel)]="filterStatus">
+                    <option value="ALL">Todas</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Aprobada">Aprobada</option>
+                    <option value="Rechazada">Rechazada</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tabla de peticiones -->
+        <div class="requests-table-container">
+            <table class="requests-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email Solicitante</th>
+                        <th>Para Usuario/Grupo</th>
+                        <th>Tablas Solicitadas</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="filteredRequests.length > 0; else noRequests">
+                        <tr *ngFor="let request of filteredRequests">
+                            <td>
+                                <a [routerLink]="['/peticion', request.id]" class="id-link">{{ request.id }}</a>
+                            </td>
+                            <td>{{ request.requesterEmail }}</td>
+                            <td>{{ request.targetUserOrGroup }}</td>
+                            <td>
+                                <ul class="table-list">
+                                    <li *ngFor="let t of request.tables">
+                                        <span class="table-name">{{ t.name }}</span> (<span class="permission-type">{{ t.permission }}</span>)
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{ request.requestDate }}</td>
+                            <td><span class="status-badge" [ngClass]="getStatusClass(request.status)">{{ request.status }}</span></td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #noRequests>
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: var(--light-text-color); padding: 20px;">
+                                No se encontraron peticiones que coincidan con los filtros.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-content-text" style="margin-top: 20px;">
+            <p>¿Necesitas algo más? Puedes volver a la <a routerLink="/" style="color: var(--primary-color); text-decoration: underline;">página de inicio</a> o <a routerLink="/solicitar-permiso" style="color: var(--primary-color); text-decoration: underline;">solicitar un nuevo permiso</a>.</p>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,301 @@
+/* Variables CSS para colores basados en un elegante tono rojo */
+:root {
+    --primary-color: #B22222; /* Firebrick - Un rojo profundo y elegante */
+    --primary-dark-color: #8B0000; /* Dark Red - Tono más oscuro para hover */
+    --accent-color: #FFD700; /* Gold - Un contraste cálido */
+    --text-color: #333;
+    --light-text-color: #555;
+    --background-color: #f0f2f5; /* Un gris claro para el fondo */
+    --card-background: #ffffff;
+    --border-color: #e0e0e0;
+    --light-red-hover: #FCE7E7; /* Un rojo muy claro para hover de botones con borde */
+
+    /* Colores para métricas */
+    --metric-pending: #ffc107; /* Amarillo oscuro */
+    --metric-approved: #4caf50; /* Verde */
+    --metric-rejected: #f44336; /* Rojo */
+    --metric-info: #2196f3; /* Azul */
+}
+
+/* Estilos globales y reseteos básicos */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Estilos de la barra de herramientas (Toolbar) */
+.app-toolbar {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.app-title-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.app-title-link:hover {
+    opacity: 0.8;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para los enlaces */
+}
+
+.toolbar-button:hover {
+    background-color: var(--primary-dark-color);
+}
+
+/* Área de contenido principal */
+.content-area {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Estilos de la tarjeta de la página */
+.page-card {
+    max-width: 1200px; /* Ancho ampliado para el dashboard */
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.page-content-text {
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Contenedor de métricas */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columnas en escritorio, adaptable */
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.metric-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-left: 5px solid; /* Borde para el color de estado */
+}
+
+.metric-card.pending { border-left-color: var(--metric-pending); }
+.metric-card.approved { border-left-color: var(--metric-approved); }
+.metric-card.rejected { border-left-color: var(--metric-rejected); }
+.metric-card.info { border-left-color: var(--metric-info); }
+
+.metric-icon {
+    font-size: 3rem; /* Icono grande */
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+.metric-card.pending .metric-icon { color: var(--metric-pending); }
+.metric-card.approved .metric-icon { color: var(--metric-approved); }
+.metric-card.rejected .metric-icon { color: var(--metric-rejected); }
+.metric-card.info .metric-icon { color: var(--metric-info); }
+
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.metric-label {
+    font-size: 1rem;
+    color: var(--light-text-color);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Sección de estadísticas adicionales (ej. tablas o usuarios) */
+.stats-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+.stats-card {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.stats-card h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.stats-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.stats-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 1rem;
+    color: var(--light-text-color);
+}
+.stats-list-item:last-child {
+    border-bottom: none;
+}
+.stats-list-item .item-name {
+    font-weight: 500;
+    color: var(--text-color);
+}
+.stats-list-item .item-value {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+@media (min-width: 768px) {
+    .stats-section {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+
+/* Pie de página (Footer) */
+.app-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    margin-top: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .app-toolbar {
+        padding: 12px 16px;
+    }
+    .app-title-link {
+        font-size: 1.2rem;
+    }
+    .toolbar-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    .page-card {
+        margin: 20px auto;
+        padding: 20px;
+    }
+    .page-title {
+        font-size: 1.8rem;
+    }
+    .page-content-text {
+        font-size: 1rem;
+    }
+    .metrics-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+    .metric-value {
+        font-size: 2rem;
+    }
+    .metric-label {
+        font-size: 0.9rem;
+    }
+    .stats-card h3 {
+        font-size: 1.4rem;
+    }
+    .stats-list-item {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-toolbar {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 10px;
+        align-items: flex-start;
+    }
+    .app-title-link {
+        margin-bottom: 10px;
+        align-self: center;
+    }
+    .spacer {
+        display: none;
+    }
+    .app-toolbar .nav-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .toolbar-button {
+        width: 90%;
+        margin: 5px auto;
+    }
+    .page-card {
+        margin: 15px auto;
+        padding: 15px;
+    }
+    .page-title {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Registro de Auditoría del Sistema</h1>
+        <div class="page-content-text">
+            <p>Aquí se registran todas las acciones importantes realizadas dentro del sistema, proporcionando una trazabilidad completa de los eventos.</p>
+            <p>Puedes filtrar los registros para encontrar información específica.</p>
+        </div>
+
+        <!-- Contenedor de filtros -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="filterActionType" class="filter-label">Tipo de Acción</label>
+                <select id="filterActionType" class="filter-select" [(ngModel)]="filterActionType">
+                    <option value="ALL">Todos</option>
+                    <option value="Solicitud Enviada">Solicitud Enviada</option>
+                    <option value="Solicitud Aprobada">Solicitud Aprobada</option>
+                    <option value="Solicitud Rechazada">Solicitud Rechazada</option>
+                    <option value="Usuario Creado">Usuario Creado</option>
+                    <option value="Usuario Eliminado">Usuario Eliminado</option>
+                    <option value="Permiso Revocado">Permiso Revocado</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filterUser" class="filter-label">Usuario que Realizó la Acción</label>
+                <input type="text" id="filterUser" class="filter-input" placeholder="ej. admin@example.com" [(ngModel)]="filterUser">
+            </div>
+            <div class="filter-group">
+                <label for="filterEntityId" class="filter-label">ID de Entidad (Petición/Usuario)</label>
+                <input type="text" id="filterEntityId" class="filter-input" placeholder="ej. 101, U001" [(ngModel)]="filterEntityId">
+            </div>
+        </div>
+
+        <!-- Tabla de registro de auditoría -->
+        <div class="audit-table-container">
+            <table class="audit-table">
+                <thead>
+                    <tr>
+                        <th>ID del Log</th>
+                        <th>Fecha y Hora</th>
+                        <th>Tipo de Acción</th>
+                        <th>Usuario</th>
+                        <th>Detalle de la Acción</th>
+                        <th>ID de Entidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="filteredLogs.length > 0; else noLogs">
+                        <tr *ngFor="let log of filteredLogs">
+                            <td>{{ log.id }}</td>
+                            <td>{{ log.dateTime }}</td>
+                            <td><span class="action-type-badge" [ngClass]="getActionTypeClass(log.type)">{{ log.type }}</span></td>
+                            <td>{{ log.user }}</td>
+                            <td>{{ log.detail }}</td>
+                            <td>{{ log.entityId }}</td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #noLogs>
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: var(--light-text-color); padding: 20px;">
+                                No hay registros de auditoría que coincidan con los filtros.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,79 @@
+<app-header></app-header>
+
+<main class="content-area">
+    <div class="page-card">
+        <h1 class="page-title">Aprobar Peticiones de Permiso</h1>
+        <div class="page-content-text">
+            <p>Aquí puedes revisar y gestionar las solicitudes de permisos pendientes. Puedes aprobar o rechazar cada petición individualmente, o seleccionar varias para acciones en bloque.</p>
+        </div>
+
+        <!-- Contenedor de filtros -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <label for="filterRequesterEmail" class="filter-label">Email Solicitante</label>
+                <input type="text" id="filterRequesterEmail" class="filter-input" placeholder="ej. usuario@example.com" [(ngModel)]="filterRequesterEmail">
+            </div>
+            <div class="filter-group">
+                <label for="filterTableName" class="filter-label">Buscar por Tabla</label>
+                <input type="text" id="filterTableName" class="filter-input" placeholder="ej. catalogo.esquema.tabla" [(ngModel)]="filterTableName">
+            </div>
+        </div>
+
+        <!-- Tabla de peticiones pendientes -->
+        <div class="requests-table-container">
+            <table class="requests-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="table-checkbox" [checked]="areAllRequestsSelected" (change)="toggleSelectAll()"></th>
+                        <th>ID</th>
+                        <th>Email Solicitante</th>
+                        <th>Para Usuario/Grupo</th>
+                        <th>Tablas Solicitadas</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="filteredRequests.length > 0; else noRequests">
+                        <tr *ngFor="let request of filteredRequests">
+                            <td><input type="checkbox" class="table-checkbox" [(ngModel)]="request.selected"></td>
+                            <td>
+                                <a [routerLink]="['/peticion', request.id]" class="id-link">{{ request.id }}</a>
+                            </td>
+                            <td>{{ request.requesterEmail }}</td>
+                            <td>{{ request.targetUserOrGroup }}</td>
+                            <td>
+                                <ul class="table-list">
+                                    <li *ngFor="let t of request.tables">
+                                        <span class="table-name">{{ t.catalog }}.{{ t.schema }}.{{ t.table }}</span> (<span class="permission-type">{{ t.permission }}</span>)
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>{{ request.requestDate }}</td>
+                            <td class="actions-cell">
+                                <button type="button" class="action-button-mini approve-button" (click)="approveRequest(request.id)">Aprobar</button>
+                                <button type="button" class="action-button-mini reject-button" (click)="rejectRequest(request.id)">Rechazar</button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #noRequests>
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: var(--light-text-color); padding: 20px;">
+                                No hay peticiones pendientes que coincidan con los filtros.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Acciones en bloque -->
+        <div class="bulk-actions-container">
+            <button type="button" class="bulk-approve-button" [disabled]="!isAnyRequestSelected" (click)="approveSelectedRequests()">
+                Aprobar Seleccionadas
+            </button>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>
