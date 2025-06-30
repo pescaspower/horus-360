@@ -9,32 +9,32 @@
         </a>
 
         <!-- Menú Desplegable de Peticiones -->
-        <div class="dropdown">
-            <button class="toolbar-button">
+        <details class="dropdown">
+            <summary class="toolbar-button">
                 <i class="material-icons">description</i>
                 <span>Peticiones</span>
                 <i class="material-icons dropdown-arrow">arrow_drop_down</i>
-            </button>
+            </summary>
             <div class="dropdown-content">
                 <a routerLink="/solicitar-permiso" routerLinkActive="active-link">Solicitar Permiso</a>
                 <a routerLink="/mis-peticiones" routerLinkActive="active-link">Mis Peticiones</a>
                 <a routerLink="/aprobar-peticiones" routerLinkActive="active-link">Aprobar Peticiones</a>
             </div>
-        </div>
+        </details>
 
         <!-- Menú Desplegable de Administración -->
-        <div class="dropdown">
-            <button class="toolbar-button">
+        <details class="dropdown">
+            <summary class="toolbar-button">
                 <i class="material-icons">admin_panel_settings</i>
                 <span>Administración</span>
                 <i class="material-icons dropdown-arrow">arrow_drop_down</i>
-            </button>
+            </summary>
             <div class="dropdown-content">
                 <a routerLink="/dashboard" routerLinkActive="active-link">Panel de Control</a>
                 <a routerLink="/gestion-usuarios-grupos" routerLinkActive="active-link">Gestión Usuarios/Grupos</a>
                 <a routerLink="/registro-auditoria" routerLinkActive="active-link">Registro de Auditoría</a>
             </div>
-        </div>
+        </details>
 
         <a routerLink="/ayuda-faq" routerLinkActive="active-link" class="toolbar-button">
             <i class="material-icons">help_outline</i>

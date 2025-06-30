@@ -311,4 +311,18 @@
     .big-data-svg-container {
         height: 150px;
     }
+    /* Añade esto a tu archivo home.css */
+
+.home-image-container {
+  text-align: center; /* Centra la imagen */
+  margin: 25px 0; /* Le da un poco de aire por arriba y por abajo */
+}
+
+.home-image {
+  max-width: 100%;      /* Asegura que la imagen sea responsiva y no se desborde */
+  height: auto;         /* Mantiene la proporción de la imagen */
+  max-height: 300px;    /* Limita su altura para que no ocupe toda la pantalla */
+  border-radius: 12px;  /* Le da unas esquinas redondeadas elegantes */
+}
+
 }

@@ -59,8 +59,14 @@
     display: inline-block;
 }
 
-.dropdown .toolbar-button {
+/* El elemento <summary> actúa como el botón del desplegable */
+.dropdown > summary.toolbar-button {
     font-family: inherit; /* Asegura que el botón herede la fuente */
+    list-style: none; /* Oculta el marcador de flecha por defecto en Firefox/Safari */
+}
+
+.dropdown > summary.toolbar-button::-webkit-details-marker {
+    display: none; /* Oculta el marcador de flecha por defecto en Chrome/Edge */
 }
 
 .dropdown-arrow {
@@ -68,7 +74,7 @@
 }
 
 .dropdown-content {
-    display: none;
+    /* display: none; ya no es necesario, <details> lo gestiona */
     position: absolute;
     background-color: #f1f1f1;
     min-width: 220px;
@@ -98,19 +104,14 @@
     font-weight: 500;
 }
 
-/* --- Lógica de apertura por clic --- */
-/* Esta es la regla clave: el menú se muestra cuando el contenedor tiene la clase .open */
-.dropdown.open .dropdown-content {
-    display: block;
-}
-
-/* La flecha solo gira cuando el menú está abierto */
-.dropdown.open .dropdown-arrow {
+/* --- Lógica de apertura nativa con <details> --- */
+/* La flecha gira cuando el <details> tiene el atributo 'open' */
+details[open] > summary .dropdown-arrow {
     transform: rotate(180deg);
 }
 
 /* Resalta el botón del menú principal si estamos en una de sus sub-páginas */
-.dropdown.active-section > .toolbar-button {
+.dropdown.active-section > summary.toolbar-button {
     background-color: var(--primary-dark-color);
 }
 
